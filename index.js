@@ -53,12 +53,12 @@ app.post('/datos-sensores', async (req, res) => {
 
 
 // 📊 GET → App obtiene último dato
-app.get('/datos-humedad', async (req, res) => {
+// MODIFICACIÓN EN INDEX.JS
+app.get('/datos-historial', async (req, res) => {
   try {
     const result = await pool.query(
-      'SELECT * FROM sensores ORDER BY fecha DESC LIMIT 1'
+      'SELECT * FROM sensores ORDER BY fecha DESC LIMIT 60' // Trae los últimos 60 registros
     );
-
     res.json(result.rows);
   } catch (err) {
     res.status(500).send("Error");
